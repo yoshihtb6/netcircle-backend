@@ -20,6 +20,14 @@ services:
     command: --default-authentication-plugin=mysql_native_password  # MySQL8.0ではデフォルトが"caching_sha2_password"で、ドライバが非対応のため変更
     ports:
       - 33306:3306  # ホストマシンのポート33306を、docker内のポート3306に接続する
-
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - db
+    environment:
+      - PMA_HOSTS=db
+      - PMA_USER=root
+    ports:
+      - "3001:80"
 volumes:
   mysql_data:
