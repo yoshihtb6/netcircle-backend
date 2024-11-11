@@ -1,4 +1,7 @@
 # netcircle-backend環境構築
+## 参考サイト
+(https://zenn.dev/sh0nk/books/537bb028709ab9/viewer/f1b6fc)
+
 ## 前提条件
 [windows開発環境](https://github.com/yoshihtb6/netcircle-frontend?tab=readme-ov-file#windows%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83)の1,2,3,5が完了しているものとします。
 
