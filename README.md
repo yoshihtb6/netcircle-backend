@@ -6,7 +6,13 @@
 
    `$ git clone git@github.com:yoshihtb6/netcircle-backend.git`
 
-2. dockerコンテナの立ち上げ
+2. fastAPIのインストール
+
+   プロジェクトルートディレクトリ(/netcircle-backend/)に移動して下記コマンドを実行する。
+
+   `$ docker-compose run --entrypoint "poetry install --no-root" demo-app`
+
+4. dockerコンテナの立ち上げ
 
    プロジェクトルートディレクトリ(/netcircle-backend/)に移動して下記コマンドを実行する。
    
@@ -18,7 +24,7 @@
 
    ブラウザに`localhost:8000/docs`と入力する。
 
-3. migtationの実行
+5. migtationの実行
 
    プロジェクトルートディレクトリ(/netcircle-backend/)に移動して下記コマンドを実行する。
 
