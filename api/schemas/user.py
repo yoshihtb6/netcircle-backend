@@ -16,7 +16,7 @@ class UserCreateResponse(UserCreate):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UserResponse(UserBase):
     id: int
@@ -27,7 +27,7 @@ class UserResponse(UserBase):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UserUpdate(UserCreate):
     icon: Optional[str] = Field(None, example="/asset/")

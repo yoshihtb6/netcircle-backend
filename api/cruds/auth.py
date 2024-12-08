@@ -32,19 +32,33 @@ async def authenticate_user(db: AsyncSession, username: str, password: str) -> O
 
     return user
 
-def create_access_token(username: str, user_id: int, expires_delta: timedelta):
+def create_access_token(username: str, user_id: int, role: str, expires_delta: timedelta):
     expires = datetime.now() + expires_delta
-    payload = {"sub": username, "id": user_id, "exp": expires}
+    payload = {"username": username, "id": user_id, "role": role, "exp": expires}
     encoded_jwt = jwt.encode(payload, SECRET_KEY,algorithm=ALGORITHM)
     return encoded_jwt
 
 def get_current_user(token: Annotated[str, Depends(oauth2_schema)]):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username = payload.get("sub")
+        username = payload.get("username")
         user_id = payload.get("id")
+        role = payload.get("role")
         if username is None or user_id is None:
             return None
-        return auth_schema.DecodedToken(username = username, user_id = user_id)
+        return auth_schema.DecodedToken(username = username, user_id = user_id, role = role)
     except JWTError:
         raise JWTError
+    
+def create_refresh_token(data: dict, expires_delta: timedelta):
+    to_encode = data.copy()
+    expire = datetime.now() + expires_delta
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+def decode_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except JWTError:
+        return None
