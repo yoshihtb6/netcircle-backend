@@ -9,7 +9,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",  # Reactなどのフロントエンドが動作しているURL
     "http://127.0.0.1:3000",  # ローカル開発用
-    "https://example.com",    # 本番環境のドメイン
+    "https://netcircle.tmp.monster",    # 本番環境のドメイン
 ]
 
 app.add_middleware(
