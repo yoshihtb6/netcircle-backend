@@ -22,7 +22,7 @@ async def list_users(db: AsyncSession = Depends(get_db)):
 async def create_user(user_body: user_schema.UserCreate, db: AsyncSession = Depends(get_db)):
     return await user_crud.create_user(db, user_body)
 
-@router.put("/users/{user_id}", response_model=user_schema.UserCreateResponse)
+@router.put("/users/{user_id}", response_model=user_schema.UserResponse)
 async def update_user(token: UserDependency, user_id: int, user_body: user_schema.UserUpdate, db: AsyncSession = Depends(get_db)):
     user = await user_crud.get_user(db, user_id=user_id)
     if user is None:

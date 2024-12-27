@@ -5,8 +5,8 @@ from datetime import datetime
 
 
 class UserBase(BaseModel):
-    name: Optional[str] = Field(None, example="jony")
-    handle_name: Optional[str] = Field(None, example="じょにー")
+    name: Optional[str] = Field(None, example="admin")
+    handle_name: Optional[str] = Field(None, example="管理者")
     role: Optional[str] = Field(None, example="admin")
 
 class UserCreate(UserBase):
@@ -20,15 +20,18 @@ class UserCreateResponse(UserCreate):
 
 class UserResponse(UserBase):
     id: int
-    icon: Optional[str] = Field(None, example="/asset/")
-    profile: Optional[str] = Field(None, example="んほおおお")
-    token: Optional[str] = Field(None, example="aaaaaaaa")
+    icon: Optional[str] = Field(None, example="xxxxxx")
+    profile: Optional[str] = Field(None, example="＼(^o^)／")
     created_at: datetime
     updated_at: datetime
 
     class Config:
         from_attributes = True
 
-class UserUpdate(UserCreate):
-    icon: Optional[str] = Field(None, example="/asset/")
-    profile: Optional[str] = Field(None, example="んほおおお")
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    handle_name: Optional[str] = None
+    password: Optional[str] = None
+    role: Optional[str] = None
+    icon: Optional[str] = None
+    profile: Optional[str] = None
